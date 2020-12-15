@@ -5,7 +5,7 @@ RUN true && \
   (curl https://sh.rustup.rs -sSf | sh -s -- -y) && \
   true
 WORKDIR /
-RUN git clone --depth=1 https://github.com/openethereum/openethereum /openethereum
+RUN git clone --branch=dev --depth=1 https://github.com/openethereum/openethereum /openethereum
 RUN cd /openethereum && sed -i 's/+aes,+sse2/+sse2/g' .cargo/config scripts/actions/build-linux.sh
 ENV RUSTFLAGS="-Ctarget-feature=+sse2,+ssse3"
 ENV PATH=/root/.cargo/bin:$PATH
